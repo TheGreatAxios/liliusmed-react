@@ -2,7 +2,7 @@
 
 module.exports = (app) => {
 
-	
+
 	// Api Routes
 	let login = require('./components/login/index');
 	let register = require('./components/register/index');
@@ -12,9 +12,9 @@ module.exports = (app) => {
 	let countyData = require('./components/countyData/index');
 	//let settings = require('./components/settings/index');
 	//let support = require('./components/support/index');
-	
+
 	// Edit Routes
-	
+
 	let editData = require('./components/edit/editData');
 
 

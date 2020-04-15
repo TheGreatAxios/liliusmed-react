@@ -39,5 +39,8 @@
   "bugs": {
     "url": "https://github.com/TheGreatAxios/liliusmed-react/issues"
   },
-  "homepage": "https://github.com/TheGreatAxios/liliusmed-react#readme"
+  "homepage": "https://github.com/TheGreatAxios/liliusmed-react#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }

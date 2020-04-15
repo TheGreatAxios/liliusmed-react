@@ -29,24 +29,24 @@ const covidIcons = {
 const getHospitalInfoEndpoint = "/dashboard/getHospitalData";
 const getHospitalInfoOptions = {
   method: "POST",
-  
+
   headers: {
-    "Content-Type": "application/json",     
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    
+
     "hospitalName": "Norwood Hospital"
   })
 }
 console.log(getHospitalInfoOptions);
 const cardStyles = {
-  hospitalCard:{
+  hospitalCard: {
     backgroundColor: '#373540',
     color: '#fff',
     margin: "18px"
   },
-  card:{
-    backgroundColor: '#373540', 
+  card: {
+    backgroundColor: '#373540',
     color: '#fff',
     padding: "10px",
     borderRadius: "5px",
@@ -66,7 +66,7 @@ const cardStyles = {
 }
 
 const hospitalData = {
-  hospital:{
+  hospital: {
     name: "Sample",
     location: "Somewhere",
     phone: "215-658-3121",
@@ -201,33 +201,32 @@ export default function CenteredGrid(props) {
   const [hospitalName, setHospitalName] = useState("")
   const getHospitalDataEndpoint = '/api/dashboard/getHospitalData';
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log(props.hospitalName)
-    const fetchHospitalData =  () => {
+    const fetchHospitalData = () => {
       fetch(getHospitalDataEndpoint, {
         method: "Post",
         headers: {
-          "Content-Type": "application/json",     
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "hospitalName" : props.hospitalName
+          "hospitalName": props.hospitalName
         })
       })
-      .then(result =>
-        result.json()).catch(function(error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message);
-        }).
-      then(data => 
-        {
+        .then(result =>
+          result.json()).catch(function (error) {
+            console.log('There has been a problem with your fetch operation: ' + error.message);
+          }).
+        then(data => {
           setHospitalData(data)
           console.log(data)
-        })  
-      };
-      fetchHospitalData();
-    
-  },[props.hospitalName])
+        })
+    };
+    fetchHospitalData();
+
+  }, [props.hospitalName])
   return (
-    <Container style={{padding: "20px 0px"}}>
+    <Container style={{ padding: "20px 0px" }}>
       <Row>
         <Col>
           <Card style={cardStyles.hospitalCard}>
@@ -247,9 +246,9 @@ export default function CenteredGrid(props) {
                   <Row
                     style={
                       {
-                        backgroundImage: `linear-gradient(rgba(55, 53, 64, 0.5), rgba(55, 53, 64, 0.5)), url(${covidIcons[item.status]})`, 
-                        backgroundPosition: "center", 
-                        backgroundRepeat: "no-repeat", 
+                        backgroundImage: `linear-gradient(rgba(55, 53, 64, 0.5), rgba(55, 53, 64, 0.5)), url(${covidIcons[item.status]})`,
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
                         backgroundSize: "30%",
                         padding: '10px'
                       }
@@ -270,25 +269,25 @@ export default function CenteredGrid(props) {
       <Container fluid>
         <Row className="justify-content-md-space-around">
           {
-            hospitalData.PPE.map((item, index)=>
-            <Col xs={4} key={index}>
-              <main style={cardStyles.card}>
-                <Row 
-                  style={
-                    {
-                      backgroundImage: `linear-gradient(rgba(55, 53, 64, 0.5), rgba(55, 53, 64, 0.5)), url(${covidIcons[item.status]})`,
-                      backgroundPosition: "center", 
-                      backgroundRepeat: "no-repeat", 
-                      backgroundSize: "30%",
-                      padding: '10px'
+            hospitalData.PPE.map((item, index) =>
+              <Col xs={4} key={index}>
+                <main style={cardStyles.card}>
+                  <Row
+                    style={
+                      {
+                        backgroundImage: `linear-gradient(rgba(55, 53, 64, 0.5), rgba(55, 53, 64, 0.5)), url(${covidIcons[item.status]})`,
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "30%",
+                        padding: '10px'
+                      }
                     }
-                  }
-                >
-                  <h6 style={cardStyles.cardHeader}>{item.status}</h6>              
-                  <CardItem data={item.arr} />
-                </Row>
-              </main>
-            </Col>
+                  >
+                    <h6 style={cardStyles.cardHeader}>{item.status}</h6>
+                    <CardItem data={item.arr} />
+                  </Row>
+                </main>
+              </Col>
             )
           }
         </Row>
@@ -297,41 +296,41 @@ export default function CenteredGrid(props) {
   );
 }
 
-function CardItem(props){
+function CardItem(props) {
   const hospitalPPEItem = props.data
-  return(
+  return (
     <Container>
       {
-        hospitalPPEItem.map((item, index)=>
-        <Row key={index}>
-          <Col xs={6}>{item.name}</Col>
-          <Col xs={3}></Col>
-          <Col xs={3}>{item.count}</Col>
-        </Row>
+        hospitalPPEItem.map((item, index) =>
+          <Row key={index}>
+            <Col xs={6}>{item.name}</Col>
+            <Col xs={3}></Col>
+            <Col xs={3}>{item.count}</Col>
+          </Row>
         )
-      }      
+      }
     </Container>
   )
 }
 
-function HospitalCardItem(props){
-  return(
-    <Container style={{padding: "10px"}}>
+function HospitalCardItem(props) {
+  return (
+    <Container style={{ padding: "10px" }}>
       <Row>
         <Col>
-        <h4>{props.hospitalName}</h4>
+          <h4>{props.hospitalName}</h4>
         </Col>
         <Col>
-         <ul style={cardStyles.list}>
-           <li>
-              <FontAwesomeIcon icon={faMapMarkerAlt}/>{" "}
-              Address 
+          <ul style={cardStyles.list}>
+            <li>
+              <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
+              Address
             </li>
-           <li>
-              <FontAwesomeIcon icon={faPhone}/>{" "}
+            <li>
+              <FontAwesomeIcon icon={faPhone} />{" "}
               Telephone Number
             </li>
-         </ul>
+          </ul>
         </Col>
         <Col>
           <p>Last Updated: {props.data.lastUpdated}</p>
